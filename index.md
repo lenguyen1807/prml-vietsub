@@ -11,14 +11,14 @@ Trước khi quyết định đưa cái này lên mạng thì mình đã đượ
 
 <img src="assets/img/permission.png">
 
-Ngoài ra, icon 🚧 nghĩa là đang viết, 💀 nghĩa là chưa viết và ✅ nghĩa là xong rồi hoặc là xong 1 phần 😗.
+Ngoài ra, icon 🚧 nghĩa là đang viết, 💀 nghĩa là chưa viết và ✅ nghĩa là xong rồi hoặc là xong 1 phần 😗. Lưu ý nữa là, đây là note theo ý mình, thế nên có thể sai, các bạn nên sử dụng với mục đích tham khảo thêm 🥰.
 
 ## 1. Introduction
 
 - 1.1 [Polynomial Curve Fitting](chapter1/polynomial_curve/) ✅
 - 1.2 [Probability Theory](chapter1/prob_theory/)  ✅
     - 1.2.1 [Probability Densities](chapter1/prob_theory/density/) ✅
-    - 1.2.2 [Expectations and Covariances]() 🚧
+    - 1.2.2 [Expectations and Covariances](chapter1/prob_theory/expectation/) 🚧
     - 1.2.3 [Bayesian Probabilities]() 💀
     - 1.2.4 [Gaussian Distribution]() 💀
     - 1.2.5 [Curve Fitting Revisited]() 💀

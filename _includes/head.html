@@ -14,8 +14,37 @@
   {%- endif -%}
 
   <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
-  {%- if site.data.options.mathjax -%}
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML"></script>
+  {%- if page.mathjax -%}
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+        Macros: {
+          e: "\\epsilon",
+          xti: "x^{(i)}",
+          yti: "y^{(i)}",
+          bfy: "{\\bf y}",
+          bfx: "{\\bf x}",
+          bfg: "{\\bf g}",
+          bfbeta: "{\\bf \\beta}",
+          tp: "\\tilde p",
+          pt: "p_\\theta",
+          E: "{\\mathbb{E}}",
+          Ind: "{\\mathbb{I}}",
+          KL: "{\\mathbb{KL}}",
+          Re: "{\\mathbb{R}}",
+          Dc: "{\\mathcal{D}}",
+          Tc: "{\\mathcal{T}}",
+          Xc: "{\\mathcal{X}}",
+          note: ["\\textcolor{blue}{[NOTE: #1]}",1]
+        }
+      },
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+  </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   {%- endif -%}
 
   <script>

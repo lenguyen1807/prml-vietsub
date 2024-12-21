@@ -1,54 +1,44 @@
 ---
 layout: post
-title: Contents
+title: PRML Vietsub 💖
 ---
-<span class="newthought">These notes</span> form a concise introductory course on probabilistic graphical models{% include sidenote.html id="note-pgm" note="Probabilistic graphical models are a subfield of machine learning that studies how to describe and reason about the world in terms of probabilities." %}.
-They are based on Stanford [CS228](https://cs228.stanford.edu/), and are written by [Volodymyr Kuleshov](http://www.stanford.edu/~kuleshov) and [Stefano Ermon](http://cs.stanford.edu/~ermon/), with the [help](https://github.com/ermongroup/cs228-notes/commits/master) of many students and course staff.
-{% include marginnote.html id='mn-construction' note='The notes are still **under construction**! Although we have written up most of the material, you will probably find several typos. If you do, please let us know, or submit a pull request with your fixes to our [GitHub repository](https://github.com/ermongroup/cs228-notes).'%}
-You too may help make these notes better by submitting your improvements to us via [GitHub](https://github.com/ermongroup/cs228-notes).
 
-This course starts by introducing probabilistic graphical models from the very basics and concludes by explaining from first principles the [variational auto-encoder](extras/vae), an important probabilistic model that is also one of the most influential recent results in deep learning.
+<span class="newthought">Hi 🙌</span>, mình là Lê Nguyễn, một sinh viên (gà) năm cuối tại Trường Đại học Khoa học tự nhiên - VNUHCM. Mục đích của trang web này là trở thành một công cụ để có thể giúp các bạn đọc cuốn [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf) của Christopher Bishop một cách dễ thở hơn. 
 
-## Preliminaries
+Vì mình cũng ngồi đọc (gần hết) cuốn này và có đôi lúc trở thành Chí Phèo chửi trời chửi đất vì không hiểu tác giả làm gì nên mình mới sinh ra cái của nợ này để giúp các bạn hiểu (một phần) tác giả đang làm gì (và không chửi trời chửi đất nữa). Mình mong là nó được đón nhận, à nếu thấy có gì sai thì cứ liên hệ với mình thông qua các mạng xã hội ở phía dưới nhé 😚 (kiến thức không để sai được, nhưng với kiến thức hạn hẹp của mình thì vẫn có thể sai thôi 😞).
 
-1. [Introduction](preliminaries/introduction/): What is probabilistic graphical modeling? Overview of the course.
+Trước khi quyết định đưa cái này lên mạng thì mình đã được sự cho phép của tác giả (hehe). Và ngoài ra template của web này được copy từ [CS228-Note](https://ermongroup.github.io/cs228-notes/) (cái này cũng hay cực, recommended).
 
-2. [Review of probability theory](preliminaries/probabilityreview): Probability distributions. Conditional probability. Random variables (*under construction*).
+<img src="assets/img/permission.png">
 
-3. [Real-world applications](preliminaries/applications): Image denoising. RNA structure prediction. Syntactic analysis of sentences. Optical character recognition. Language Modeling (*under construction*).
+## 1. Introduction
 
-## Representation
+- 1.1 [Polynomial Curve Fitting](chapter1/polynomial_curve/)
+- 1.2 [Probability Theory](chapter1/prob_theory.md)
+- 1.3 [Model Selection](chapter1/model_select.md)
+- 1.4 [The Curse of Dimensionality](chapter1/curse_of_dim.md)
+- 1.5 [Decision Theory](chapter1/decision_theory.md)
+- 1.6 [Information Theory](chapter1/info_theory.md)
+- [Exercises (Part I)](chapter1/exercises1.md)
+- [Exercises (Part II)](chapter2/exercises2.md)
 
-1. [Bayesian networks](representation/directed/): Definitions. Representations via directed graphs. Independencies in directed models.
+## 2. Probability Distributions
 
-2. [Markov random fields](representation/undirected/): Undirected vs directed models. Independencies in undirected models. Conditional random fields.
+- 2.1 [Binary Variables](chapter2/binary_var.md)
+- 2.2 [Multinomial Variables](chapter2/multinomial_var.md)
+- 2.3 [The Gaussian Distribution](chapter2/gauss_dist.md)
+- 2.4 [The Exponential Family](chapter2/exp_familiy.md)
+- 2.5 Nonparametric Methods (ta không cần đến thứ này đâu).
 
-## Inference
+## 3. Linear Models for Regression
 
-1. [Variable elimination](inference/ve/) The inference problem. Variable elimination. Complexity of inference.
+## 4. Linear Models for Classification
 
-2. [Belief propagation](inference/jt/): The junction tree algorithm. Exact inference in arbitrary graphs. Loopy Belief Propagation.
+<!-- - 1.2.1 [Introduction to Probability](chapter1/intro_prob.md)
+- 1.2.2 [Probability Densities](chapter1/prob_density.md)
+- 1.2.3 [Expectations and Covariances](chapter1/expectation.md)
+- 1.2.4 [Bayesian Probabilities](chapter1/bayes_prob.md)
+- 1.2.5 [Gaussian Distribution](chapter1/gauss_dist.md)
+- 1.2.6 [Curve Fitting Revisited](chapter1/curve_fit_revisited.md)
+- 1.2.7 [Bayesian Curve Fitting](chapter1/bayes_curve.md) -->
 
-3. [MAP inference](inference/map/): Max-sum message passing. Graphcuts. Linear programming relaxations. Dual decomposition.
-
-4. [Sampling-based inference](inference/sampling/): Monte-Carlo sampling. Forward Sampling. Rejection Sampling. Importance sampling. Markov Chain Monte-Carlo. Applications in inference.
-
-5. [Variational inference](inference/variational/): Variational lower bounds. Mean Field. Marginal polytope and its relaxations.
-
-## Learning
-
-1. [Learning in directed models](learning/directed/): Maximum likelihood estimation. Learning theory basics. Maximum likelihood estimators for Bayesian networks.
-
-2. [Learning in undirected models](learning/undirected/): Exponential families. Maximum likelihood estimation with gradient descent. Learning in CRFs
-
-3. [Learning in latent variable models](learning/latent/): Latent variable models. Gaussian mixture models. Expectation maximization.
-
-4. [Bayesian learning](learning/bayesian/): Bayesian paradigm. Conjugate priors. Examples (*under construction*).
-
-5. [Structure learning](learning/structure/): Chow-Liu algorithm. Akaike information criterion. Bayesian information criterion. Bayesian structure learning (*under construction*).
-
-## Bringing it all together
-
-1. [The variational autoencoder](extras/vae): Deep generative models. The reparametrization trick. Learning latent visual representations.
-
-2. [List of further readings](extras/readings): Structured support vector machines. Bayesian non-parametrics.

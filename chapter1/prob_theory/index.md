@@ -247,7 +247,7 @@ tức là xác suất của $X$ cho dù biết $Y$ hay không thì cũng không 
 
 <br/>
 
-|[Home](../../) | [Previous](../polynomial_curve/) | [Next](density/)|
+|[Previous](../polynomial_curve/) | [Next](density/)|
 
 <br/>
 

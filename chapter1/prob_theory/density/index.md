@@ -106,8 +106,7 @@ $$
 
 <br/>
 
-|[Home](../../) | [Previous](../../prob_theory/) | [Next](../expectation/)|
-
+|[Previous](../../prob_theory/) | [Next](../expectation/)|
 
 <br/>
 

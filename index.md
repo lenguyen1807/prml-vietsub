@@ -18,8 +18,8 @@ Ngoài ra, icon 🚧 nghĩa là đang viết, 💀 nghĩa là chưa viết và �
 - 1.1 [Polynomial Curve Fitting](chapter1/polynomial_curve/) ✅
 - 1.2 [Probability Theory](chapter1/prob_theory/)  ✅
     - 1.2.1 [Probability Densities](chapter1/prob_theory/density/) ✅
-    - 1.2.2 [Expectations and Covariances](chapter1/prob_theory/expectation/) 🚧
-    - 1.2.3 [Bayesian Probabilities]() 💀
+    - 1.2.2 [Expectations and Covariances](chapter1/prob_theory/expectation/) ✅
+    - 1.2.3 [Bayesian Probabilities]() 🚧
     - 1.2.4 [Gaussian Distribution]() 💀
     - 1.2.5 [Curve Fitting Revisited]() 💀
     - 1.2.6 [Bayesian Curve Fitting]() 💀
@@ -27,8 +27,8 @@ Ngoài ra, icon 🚧 nghĩa là đang viết, 💀 nghĩa là chưa viết và �
 - 1.4 [The Curse of Dimensionality]() 💀
 - 1.5 [Decision Theory]() 💀
 - 1.6 [Information Theory]() 💀
-- [Exercises (Part I)](chapter1/prob_theory/exercises_1/) 🚧
-- [Exercises (Part II)]() 💀
+- [Exercises (Part I)](chapter1/prob_theory/exercises_1/) ✅
+- [Exercises (Part II)]() 🚧
 
 ## 2. Probability Distributions 💀
 

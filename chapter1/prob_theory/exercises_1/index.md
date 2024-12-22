@@ -9,6 +9,11 @@ Mục lục:
 - [Bài 1.1](#bài-11)
 - [Bài 1.2](#bài-12)
 - [Bài 1.3](#bài-13)
+- [Bài 1.4](#bài-14)
+- [Bài 1.5](#bài-15)
+- Bài 1.6 (Đã chứng minh ở [Expectation and Covariances](../expectation/))
+- [Bài 1.7](#bài-17)
+- [Bài 1.8](#bài-18)
 
 ## Bài 1.1
 
@@ -214,7 +219,263 @@ Do nếu $g(y) = \alpha y + \beta$ thì $g''(y) = 0$ với mọi $y$.
 
 Vậy $p_y'(\hat{y}) = 0 \implies p_x'(g(\hat{y})) = 0 \implies p_x'(\hat{x}) = p_{x}(g(\hat{y})) = 0 \implies  \hat{x} = g(\hat{y})$. Ta có thể thấy bằng việc chọn $g$ là một hàm tuyến tính thì $\hat{x} = g(\hat{y})$, do đó việc chọn hàm $g$ để biến đổi từ $X$ sang $Y$ là rất quan trọng.
 
-**References**:
-- [prml-web-sol.dvi (microsoft.com)](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/05/prml-web-sol-2009-09-08.pdf)
-- [real analysis - Exercise 1.4 from PRML: Process of Using Transformations to Find Modes of PDFs - Mathematics Stack Exchange](https://math.stackexchange.com/questions/3494289/exercise-1-4-from-prml-process-of-using-transformations-to-find-modes-of-pdfs)
-- [real analysis - Linear/non-linear change of variables: $\tilde{f} \ ' (\tilde{y}) = f'(g(\tilde{y})) g'(\tilde{y}) = 0$ and assuming $g'(\tilde{y}) \not= 0$ - Mathematics Stack Exchange](https://math.stackexchange.com/questions/3510938/linear-non-linear-change-of-variables-tildef-tildey-fg-tilde)
+**References** [^1] [^2] [^3]
+
+## Bài 1.5
+
+Dựa vào các tính chất sau của kì vọng [^4] [^5]:
+
+$$
+\begin{aligned}
+\mathbb{E}[f + g] &= \mathbb{E}[f] + \mathbb{E}[g] \\
+\mathbb{E}[\alpha f] &= \alpha \mathbb{E}[f], \hspace{5pt} \text{$\alpha \in \mathbb{R}$} \\
+\mathbb{E}[c] &= c, \hspace{5pt} \text{$c \in \mathbb{R}$.}
+\end{aligned}
+$$
+
+Khi đó:
+
+$$
+\begin{aligned}
+\text{var}[f] &= \mathbb{E}[(f(X) - \mathbb{E}[f(X)])^2] \\
+&= \mathbb{E}[f(X)^2 - 2f(X)\mathbb{E}[f(X)] + \mathbb{E}[f(X)]^2] \\
+&= \mathbb{E}[f(X)^2] -2\mathbb{E}[f(X)\mathbb{E}[f(X)]] + \mathbb{E}[\mathbb{E}[f(X)]^2] \\
+&= \mathbb{E}[f(X)^2] - 2\mathbb{E}[f(X)]\mathbb{E}[f(X)] + \mathbb{E}[f(X)]^2 \\
+&= \mathbb{E}[f(X)^2] - \mathbb{E}[f(X)]^2
+\end{aligned}
+$$
+
+## Bài 1.7
+
+Trước tiên có một cái mình cần làm rõ, ta có:
+
+$$
+\begin{aligned}
+I^2 &= \left[ \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2} x^2 \right) dx \right]^2 \\
+&= \int_{-\infty}^{\infty}\exp\left( -\frac{1}{2\sigma^2} x^2 \right)dx\int_{-\infty}^{\infty}\exp\left( -\frac{1}{2\sigma^2} x^2 \right)dx \\
+&= \int_{-\infty}^{\infty}\exp\left( -\frac{1}{2\sigma^2} x^2 \right)dx\int_{-\infty}^{\infty}\exp\left( -\frac{1}{2\sigma^2} y^2 \right)dy \\
+&= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2}x^2 - \frac{1}{2\sigma^2}y^2 \right) dx dy
+\end{aligned}
+$$
+
+Chuyển từ toạ độ $(x, y)$ sang toạ độ cực $(r, \theta)$ cho tích phân $I^2$ (tìm hiểu ở [^6]), ta có:
+
+$$
+\begin{aligned}
+I^{2} &= \int_{0}^{2\pi} \int_{0}^{\infty} \exp\left( -\frac{1}{2\sigma^{2}}r^2\cos(\theta)^2 -\frac{1}{2\sigma^2}r^2\sin (\theta)^2 \right) r dr d\theta \\
+&= \int_{0}^{2\pi} \int_{0}^{\infty} \exp\left( -\frac{1}{2\sigma^2} r^2 \right) r dr d\theta \\
+&= \int_{0}^{2\pi} \left[ \int_{0}^{\infty} \exp\left( -\frac{1}{2\sigma^2} r^2 \right) rdr \right] d \theta
+\end{aligned}
+$$
+
+Đặt $u = r^2$ ta có $\frac{1}{2}du = r dr$:
+
+$$
+\begin{align*}
+I^{2} &= \int_{0}^{2\pi} \frac{1}{2} \left[ \int_{0}^{\infty} \exp\left( -\frac{1}{2\sigma^2} u \right) du \right] d \theta 
+\end{align*}
+$$
+
+Xét tích phân của $u$, ta có:
+
+$$
+\begin{align*}
+\int_{0}^{\infty} \exp\left( -\frac{1}{2\sigma^2} u \right) du &= \lim_{ n \to \infty } \int_{0}^{n} \exp\left( -\frac{1}{2\sigma^2} u \right) du\\
+&= \lim_{ n \to \infty } \left[ \left. -2\sigma^2 \exp\left( -\frac{1}{2\sigma^2}u \right) \right|_{0}^n \hspace{3pt} \right] \\
+&= \lim_{ n \to \infty } \left[ -2\sigma^2\exp\left( -\frac{1}{2\sigma^2}n \right) + 2\sigma^2 \right] \\
+&= 2\sigma^2
+\end{align*}
+$$
+
+Thay vào tích phân $I^2$, ta được:
+
+$$
+\begin{align*}
+I^2 &= \int_{0}^{2\pi} \sigma^2 d\theta \\
+&= \left. \sigma^2 \theta \right|_{0}^{2\pi} \\
+&= 2\pi \sigma^2 \\
+\implies I &= (2\pi \sigma^2)^{1/2}
+\end{align*}
+$$
+
+Vậy:
+
+$$
+\int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2}x^2 \right)dx = (2\pi \sigma^2)^{1/2}
+$$
+
+Để áp dụng được tích phân này lên phân phối chuẩn $\mathcal{N}(\mu, \sigma^2)$, ta đặt $z = x - \mu$, khi đó $dz = dx$, vậy:
+
+$$
+\begin{align*}
+\int_{-\infty}^{\infty} \mathcal{N}(x \mid \mu, \sigma^2) &= \int_{-\infty}^{\infty} \frac{1}{(2\pi \sigma^2)^{1/2}} \exp\left( -\frac{1}{2\sigma^2}(x - \mu)^2 \right) dx \\
+&= \int_{-\infty}^{\infty} \frac{1}{(2\pi \sigma^2)^{1/2}} \exp\left( -\frac{1}{2\sigma^2} z^2 \right) dz \\
+&= \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2}z^2 \right) dz \\
+&= 1
+\end{align*}
+$$
+
+## Bài 1.8
+
+**WARNING**: Bài này khá hardcore đấy 💀
+
+---
+**Nhắc lại**:
+
+Kì vọng của phân phối chuẩn:
+
+$$
+\mathbb{E}[X] = \int_{-\infty}^{\infty} \mathcal{N}(x \mid \mu, \sigma^2) x dx = \mu
+$$
+
+Moment bậc 2 của phân phối chuẩn:
+
+$$
+\mathbb{E}[X^2] = \int_{-\infty}^{\infty} \mathcal{N}(x \mid \mu, \sigma^2) x^2 dx = \mu^2 + \sigma^2
+$$
+
+Phương sai của phân phối chuẩn
+
+$$
+\text{var}[X] = \sigma^2
+$$
+
+--- 
+
+Đầu tiên, đặt $z = x- \mu \implies x = z + \mu$ vậy $dx = dz$. Thay $z$ vào tích phân của $\mathbb{E}[X]$, ta được:
+
+$$
+\begin{align*}
+\mathbb{E}[X] &= \int_{-\infty}^{\infty} \frac{1}{(2\pi \sigma^2)^{1/2}} \exp\left( \frac{-1}{2\sigma^2}z^2 \right) (z + \mu) dz \\
+&= \frac{1}{(2\pi \sigma^2)^{1/2}} \left[ \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2}z^2 \right) z dz + \mu \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2\sigma^2} z^2 \right) dz \right] \\
+\end{align*}
+$$
+
+Xét tích phân phía bên trái dấu $+$ nằm trong ngoặc vuông, đặt:
+
+$$
+f(z) = \exp\left( -\frac{1}{2\sigma^2} z^2 \right) z
+$$
+
+với mọi $z \in \mathbb{R}$, ta có:
+
+$$
+\begin{align*}
+f(-z) &= \exp\left( -\frac{1}{2\sigma^2}(-z)^2 \right)(-z) \\
+&= -\left[\exp\left( -\frac{1}{2\sigma^2}z^2 \right)z\right] \\
+&= -f(z)
+\end{align*}
+$$
+
+do đó phần tích phân mà ta đang xét là tích phân của hàm lẻ [^7].
+
+Vì vậy:
+
+$$
+\int_{-\infty}^{\infty} \exp\left( \frac{-1}{2\sigma^2} z^2 \right)z dz = 0
+$$
+
+Còn phần tích phân phía sau dấu $+$ trong ngoặc vuông đã được ta chứng minh ở [bài 1.7](#bài-17) phía trên và có giá trị là $(2\pi \sigma^2)^{1/2}$. Vậy ta có:
+
+$$
+\begin{align*}
+\mathbb{E}[X] &= \frac{1}{(2\pi \sigma^2)^{1/2}} [0 + \mu (2\pi \sigma^2)^{1/2}] \\
+&= \mu
+\end{align*}
+$$
+
+Đặt:
+
+$$
+f(\sigma^2) = \int_{-\infty}^{\infty} \mathcal{N}(x \mid \mu, \sigma^2) dx
+$$
+
+Theo [^8], ta có:
+
+$$
+\begin{align*}
+\frac{\partial f(\sigma^2)}{\partial \sigma^2} &= \int_{-\infty}^{\infty} \frac{\partial\mathcal{N}(x \mid \mu, \sigma^2)}{\partial \sigma^2} dx \\
+\end{align*}
+$$
+
+Giờ vấn đề là ta phải đạo hàm phân phối chuẩn theo $\sigma^2$, trước tiên, ta đặt:
+
+$$
+\begin{align*}
+g(\sigma^2) &= \frac{1}{(2\pi \sigma^2)^{1/2}} \\
+h(\sigma^2) &= \exp\left( -\frac{1}{2\sigma^2} (x-\mu)^2 \right) \\
+\implies \mathcal{N}(x \mid \mu, \sigma^2) &= g(\sigma^2)h(\sigma^2) \\
+\end{align*}
+$$
+
+Vậy:
+
+$$
+\frac{\partial \mathcal{N}(x \mid \mu, \sigma^2)}{\partial \sigma^2} = \frac{\partial g(\sigma^2)}{\partial \sigma^2}h(\sigma^2) + g(\sigma^2) \frac{\partial h(\sigma^2)}{\partial \sigma^2}
+$$
+
+Để giải được phương trình trên, ta tìm từng đạo hàm, đầu tiên là $g(\sigma^2)$:
+
+$$
+\begin{align*}
+\frac{\partial g(\sigma^2)}{\partial \sigma^2} &= \frac{1}{(2\pi)^{1/2}} \frac{\partial 1 / [(\sigma^2)^{1/2}]}{\partial \sigma^2} \\
+&= \frac{1}{(2\pi)^{1/2}} \left( -\frac{1}{2} \frac{1}{(\sigma^2)^{3/2}} \right) \\
+&= \frac{1}{(2\pi)^{1/2}} \left( -\frac{1}{2} \frac{1}{(\sigma^2)^{1/2}\sigma^2} \right) \\
+&= -\frac{1}{2\sigma^2}g(\sigma^2)
+\end{align*}
+$$
+
+tiếp theo là $h(\sigma^2)$:
+
+$$
+\begin{align*}
+\frac{\partial h(\sigma^2)}{\partial \sigma^2} &= -\frac{\partial 1/(2\sigma^2)}{\partial \sigma^2}[(x-\mu)^2 h(\sigma^2)]  \\
+&= \frac{1}{2} \frac{1}{\sigma^4} (x-\mu)^2 h(\sigma^2) \\\\
+&= \frac{1}{2\sigma^2} \frac{(x-\mu)^2}{\sigma^2} h(\sigma^2)
+\end{align*}
+$$
+
+Kết hợp lại, ta được:
+
+$$
+\begin{align*}
+\frac{\partial \mathcal{N}(x \mid \mu, \sigma^2)}{\partial \sigma^2} &= -\frac{1}{2\sigma^2}g(\sigma^2)h(\sigma^2) + \frac{1}{2\sigma^2} \frac{(x-\mu)^2}{\sigma^2} g(\sigma^2)h(\sigma^2) \\
+&= \frac{1}{2\sigma^2}g(\sigma^2)h(\sigma^2) \left[\frac{(x-\mu)^2}{\sigma^2} - 1 \right] \\
+&= \frac{1}{2\sigma^2}\left[ \frac{(x-\mu)^2}{\sigma^2} - 1 \right] \mathcal{N}(x \mid \mu, \sigma^2)
+\end{align*}
+$$
+
+Thực hiện đạo hàm 2 vế, ta có:
+
+$$
+\begin{align*}
+&\frac{\partial f(\sigma^2)}{\partial \sigma^2} = \frac{\partial 1}{\partial \sigma^2} \\
+&\Leftrightarrow \int_{-\infty}^{\infty} \frac{1}{2\sigma^2}\left[ \frac{(x-\mu)^2}{\sigma^2} - 1 \right] \mathcal{N}(x \mid \mu, \sigma^2) dx = 0 \\
+&\Leftrightarrow \frac{1}{\sigma^2}\int_{-\infty}^{\infty} (x-\mu)^2 \mathcal{N}(x \mid \mu, \sigma^2) dx - \int_{-\infty}^{\infty} \mathcal{N}(x \mid \mu, \sigma^2) dx = 0 \\
+&\Leftrightarrow \frac{1}{\sigma^2}\int_{-\infty}^{\infty} (x-\mu)^2 \mathcal{N}(x \mid \mu, \sigma^2) dx - 1 = 0 \\
+&\Leftrightarrow \int_{-\infty}^{\infty} (x-\mu)^2 \mathcal{N}(x \mid \mu, \sigma^2) dx = \sigma^2 \\
+&\Leftrightarrow \mathbb{E}[(X-\mu)^2] = \sigma^2 \\
+&\Leftrightarrow \text{var}[X] = \sigma^2
+\end{align*}
+$$
+
+Vậy ta chứng minh được phương sai của phân phối chuẩn là $\sigma^2$, tiếp theo:
+
+$$
+\begin{align*}
+\text{var}[X] &= \mathbb{E}[X^2] - \mathbb{E}[X] \\
+\implies \mathbb{E}[X^2] &= var[X] + \mathbb{E}[X] \\
+&= \sigma^2 + \mu^2
+\end{align*}
+$$
+
+<br/>
+
+[^1]: [prml-web-sol.dvi (microsoft.com)](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/05/prml-web-sol-2009-09-08.pdf)
+[^2]: [real analysis - Exercise 1.4 from PRML: Process of Using Transformations to Find Modes of PDFs - Mathematics Stack Exchange](https://math.stackexchange.com/questions/3494289/exercise-1-4-from-prml-process-of-using-transformations-to-find-modes-of-pdfs)
+[^3]: [real analysis - Linear/non-linear change of variables: $\tilde{f} \ ' (\tilde{y}) = f'(g(\tilde{y})) g'(\tilde{y}) = 0$ and assuming $g'(\tilde{y}) \not= 0$ - Mathematics Stack Exchange](https://math.stackexchange.com/questions/3510938/linear-non-linear-change-of-variables-tildef-tildey-fg-tilde)
+[^4]: [MIT Expectation Slide](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2005/6ad0342f836f80c219470870db432c18_ln14.pdf)
+[^5]: [Lotus theorem](https://en.wikipedia.org/wiki/Law_of_the_unconscious_statistician)
+[^6]: [Double Integrals in Polar Coordinates](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/15%3A_Multiple_Integration/15.03%3A_Double_Integrals_in_Polar_Coordinates)
+[^7]: [Definite integral of an odd function is 0 (symmetric interval)](https://math.stackexchange.com/questions/1230999/definite-integral-of-an-odd-function-is-0-symmetric-interval)
+[^8]: [Leibniz integral rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule)
